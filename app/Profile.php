@@ -15,4 +15,5 @@ class Profile extends Model
         'hobby' => 'required',
         'introduction' => 'required',
         );
+        protected $table = 'profile';
 }
