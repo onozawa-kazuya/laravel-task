@@ -57,7 +57,7 @@ class ProfileController extends Controller
       if (empty($profile)) {
         abort(404);    
       }
-        return view('admin.profile.edit');
+        return view('admin.profile.edit', ['profile_form' => $profile]);
     }
 
 
@@ -65,10 +65,13 @@ class ProfileController extends Controller
     {
         // Validationをかける
       $this->validate($request, Profile::$rules);
+      
       // Profile Modelからデータを取得する
       $profile = Profile::find($request->id);
+      
       // 送信されてきたフォームデータを格納する
       $profile_form = $request->all();
+      
       // if (isset($profile_form['image'])) {
       //   $path = $request->file('image')->store('public/image');
       //   $profile->image_path = basename($path);
@@ -82,7 +85,7 @@ class ProfileController extends Controller
       // 該当するデータを上書きして保存する
       $profile->fill($profile_form)->save();
 
-        return redirect('admin/profile/edit');
+        return redirect('admin/profile/update');
     }
     
     
