@@ -15,5 +15,13 @@ class Profile extends Model
         'hobby' => 'required',
         'introduction' => 'required',
         );
-        protected $table = 'profile';
+        
+        
+        protected $table = 'profiles';
+        
+        
+        public function histories()
+        {
+            return $this -> hasMany('App\History');
+        }
 }
